@@ -1,0 +1,99 @@
+@font-face {
+  font-family:'Parkinsans';
+  src: url('../static//Font/Parkinsans-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family:'Parkinsans';
+  src: url('../static//Font/Parkinsans-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family:'Parkinsans';
+  src: url('../static//Font/Parkinsans-Bold.ttf');
+  font-weight: 700;
+}
+@font-face {
+  font-family:'Parkinsans';
+  src: url('../static//Font/Parkinsans-ExtraBold.ttf');
+  font-weight: 800;
+}
+:root{
+  --font:'Parkinsans';
+  
+  --color-primary : #222831;
+  --color-secondary : #393E46;
+  --color-accent : #00ADB5;
+
+  --text-primary : #eeeeee;
+  --text-secondary : #b8bcc8;
+  --text-accent : #00adb5;
+  --text-inverse : #222831;
+
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  overflow-x: hidden;
+  background-color: transparent;
+}
+body,input, textarea, select, button{
+  font-family: var(--font);
+}
+::selection{
+  background-color: var(--color-accent);
+}
+canvas{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  position: relative; 
+  z-index: 10;
+  pointer-events: none;
+  color: var(--text-primary);
+}
+section h1 , section h2 , section h3 , section p , section span {
+  pointer-events: auto;
+}
+.btnWarpper {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 40px;
+    position: relative;
+}
+button{
+  background-color: white;
+  color: #00ADB5;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px -4px #ffffff;;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all .3s ease ;
+}
+button:hover{
+  color: #eeeeee;
+  background-color: #00ADB5;
+  box-shadow: 5px 5px 10px -2px #00ADB5;
+  transform: translateY(-5px);
+}
