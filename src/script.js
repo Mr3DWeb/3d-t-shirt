@@ -14,7 +14,7 @@ const renderer = new THREE.WebGLRenderer({
   antialias:true,
   alpha:true
 });
-renderer.setSize(window.innerWidth,innerHeight);
+renderer.setSize(window.innerWidth,window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 2;
@@ -27,11 +27,40 @@ controls.enableDamping = true;
 window.addEventListener('resize',() => {
   camera.aspect = window.innerWidth/window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,innerHeight);
+  renderer.setSize(window.innerWidth,window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+
+  const responsiveResize = getResponsiveData();
+  const tShritScale = responsiveResize.modelScale;
+  tShrit.scale.set(tShritScale,tShritScale,tShritScale);
 })
 
 //--------------------------- JS ------------------------------
+// Manage Responsive 
+function getResponsiveData(){
+  const width = window.innerWidth;
+  const isMobile = width <= 450;
+  return{
+    particleCount: isMobile ? 20 : 40,
+    modelScale : isMobile ? 1.5 : 3,
+    brushSizeDefault : isMobile ? 15 : 30,
+    fpsTarget : isMobile ? 30 : 60
+  }
+}
+const responsive = getResponsiveData();
+
+//Handel Animation
+const btnAnimation = document.querySelector("#animation");
+const btnState = {
+  isRunning :false,
+  toggle(){
+    this.isRunning = !this.isRunning;
+    btnAnimation.textContent = (this.isRunning) ? "Stop Animation" : "Run Animation";
+    this.isRunning ? action.reset().fadeIn(1.2).play() : action.fadeOut(1); 
+  }
+}
+btnAnimation.addEventListener('click',()=>{btnState.toggle()});
+
 
 //----------------------------Three js-------------------------
 //Lighting
@@ -76,17 +105,9 @@ gltfLoader.load("model/t-shirt.glb",(gltf)=>{
   console.log(gltf)
 })
 
-//Handel Animation
-const btnAnimation = document.querySelector("#animation");
-const btnState = {
-  isRunning :false,
-  toggle(){
-    this.isRunning = !this.isRunning;
-    btnAnimation.textContent = (this.isRunning) ? "Stop Animation" : "Run Animation";
-    this.isRunning ? action.reset().play() : action.fadeOut(1)
-  }
-}
-btnAnimation.addEventListener('click',()=>{btnState.toggle()});
+
+
+
 //-------------------------------------------------------------
 const clock = new THREE.Clock();
 function animate(){
