@@ -51,8 +51,7 @@ const responsive = getResponsiveData();
 
 //Handel Animation
 const btnAnimation = document.querySelector("#animation");
-const btnState = {
-  isRunning :false,
+const btnStateAnimation = {
   toggle(){
     const isActive = btnAnimation.getAttribute('data-active') === 'true';
     if(isActive){
@@ -64,7 +63,30 @@ const btnState = {
     }
   }
 }
-btnAnimation.addEventListener('click',()=>{btnState.toggle()});
+btnAnimation.addEventListener('click',()=>{btnStateAnimation.toggle()});
+// Hide * show Human
+const btnHuman = document.querySelector("#human");
+const btnStateHuman = {
+  toggle(){
+    const isActive = btnHuman.getAttribute('data-active') === 'true';
+    if(isActive){
+      btnHuman.setAttribute('data-active','false')
+      tShrit.children[0].children[0].visible = false;
+      camera.position.set(0,0,2);
+    }else{
+      btnHuman.setAttribute('data-active', 'true');
+      tShrit.children[0].children[0].visible = true;
+      camera.position.set(0,0,6.2);
+    }
+  }
+}
+btnHuman.addEventListener('click',()=>{btnStateHuman.toggle()});
+
+//Take a Shot
+const btnShot = document.querySelector("#shot");
+btnShot.addEventListener('click',()=>{
+  alert("soon");
+})
 
 //Dark Theme
 const toggleBtn = document.getElementById('theme-toggle');

@@ -46,12 +46,12 @@
 }
 body{
   overflow: hidden;
-  background: linear-gradient(135deg, #222831 0%, #0f1012 100%);
+  background: linear-gradient(135deg, #222831 0%, #0a1427 100%);
   transition: background 0.5s ease;
   z-index: 0;
 }
 [data-theme="light"] body {
-    background: linear-gradient(135deg, #eeeeee 0%, #d1ddf1 100%);
+    background: linear-gradient(135deg, #eeeeee 0%, #bcd1f3 100%);
 }
 body,input, textarea, select, button{
   font-family: var(--font);
@@ -108,7 +108,7 @@ div#header h1 {
   color: var(--text-primary);
 }
 div#main{
-  height: 78vh;
+  height: 79vh;
 }
 div#main div{
   width: 20%;
@@ -118,8 +118,8 @@ div#main div{
   box-shadow: var(--glass-shadow);
 }
 div#footer{
-  height: 10vh;
-  gap: 15px;
+  height: 9vh;
+  gap: 12px;
   justify-content: center;
 }
 /*---- btn change theme -----*/
@@ -133,6 +133,7 @@ div#footer{
   padding: 0;
   outline: none;
   box-shadow: none; 
+  backdrop-filter: blur(10px);
 }
 .switch-handle {
   width: 40px;
@@ -181,13 +182,11 @@ div#footer{
     border-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Animation Button */
-.small-btn {
+/* Animation & Human Button  */
+.footer-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  line-height: 0;
-  gap: 8px;
   padding: 12px;
   color: var(--text-primary);
   background-color: var(--glass-bg);
@@ -195,19 +194,40 @@ div#footer{
   box-shadow: var(--glass-shadow);
   cursor: pointer;
   transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
 }
-.small-btn svg{
+.footer-btn svg{
   display: block;
   width: 40px;
   height: 40px;
   fill: var(--text-primary);
   margin-bottom: -6px;
 }
-.small-btn[data-active="true"]{
+.footer-btn:hover{
+  border-color: rgba(11, 123, 129, 0.507);
+}
+.footer-btn:nth-child(2) svg {
+    transform: scale(1.2);
+    transform-origin: center;
+}
+.footer-btn:nth-child(3) svg {
+    transform: scale(1.6);
+    transform-origin: center;
+}
+.footer-btn[data-active="true"]{
    box-shadow: 0 0 5px rgba(0, 173, 181, 0.4);
    background: rgba(0, 173, 181, 0.1);
 }
-.small-btn[data-active="true"] svg {
+.footer-btn[data-active="true"] svg {
   fill: var(--color-accent);
+  transform: scale(1.1);
+}
+#shot{
+   box-shadow: 0 0 5px rgba(0, 173, 181, 0.4);
+   background: rgba(0, 173, 181, 0.1);
+}
+#shot svg , #shot .shot-text{
+  color: var(--color-accent);
+   fill: var(--color-accent);
   transform: scale(1.1);
 }
