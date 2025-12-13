@@ -64,6 +64,7 @@ const btnStateAnimation = {
   }
 }
 btnAnimation.addEventListener('click',()=>{btnStateAnimation.toggle()});
+
 // Hide * show Human
 const btnHuman = document.querySelector("#human");
 const btnStateHuman = {
@@ -105,6 +106,19 @@ toggleBtn.addEventListener('click', () => {
     localStorage.setItem('theme', newTheme);
 });
 
+//-----Tools Bar-------------
+//undo
+const undoBtn = document.getElementById("undoBTN");
+//redo
+const redoBtn = document.getElementById("redoBTN");
+//zoom in
+const zoomInBtn = document.getElementById("zoomInBTN");
+//zoom out
+const zoomOutBtn = document.getElementById("zoomOutBTN");
+//lock
+const lockBtn = document.getElementById("lockBTN");
+//trash
+const trashBtn = document.getElementById("trashBTN");
 
 //----------------------------Three js-------------------------
 //Lighting
