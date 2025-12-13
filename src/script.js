@@ -49,41 +49,42 @@ function getResponsiveData(){
 }
 const responsive = getResponsiveData();
 
-//Handel Animation
-const btnAnimation = document.querySelector("#animation");
-const btnStateAnimation = {
-  toggle(){
-    const isActive = btnAnimation.getAttribute('data-active') === 'true';
-    if(isActive){
-      btnAnimation.setAttribute('data-active','false')
-      action.fadeOut(1); 
-    }else{
-      btnAnimation.setAttribute('data-active', 'true');
-      action.reset().fadeIn(1.2).play()
-    }
-  }
+// Toggle Function
+function toggleState (btn,onActive,onInactive){
+  const isActive = btn.dataset.active ==='true';
+  btn.dataset.active = !isActive;
+  !isActive ? onActive() : onInactive();
 }
-btnAnimation.addEventListener('click',()=>{btnStateAnimation.toggle()});
+
+//logic Run Animation
+const btnAnimation = document.querySelector("#animation");
+btnAnimation.addEventListener("click",function(){
+  toggleState(this,
+    ()=>{
+      action.reset().fadeIn(1.2).play();
+    },
+    ()=>{
+      action.fadeOut(1);
+    }
+  )
+})
 
 // Hide * show Human
 const btnHuman = document.querySelector("#human");
-const btnStateHuman = {
-  toggle(){
-    const isActive = btnHuman.getAttribute('data-active') === 'true';
-    if(isActive){
-      btnHuman.setAttribute('data-active','false')
-      tShrit.children[0].children[0].visible = false;
-      camera.position.set(0,0,2.4);
-      tShrit.position.y = -3.5
-    }else{
-      btnHuman.setAttribute('data-active', 'true');
+btnHuman.addEventListener('click',function(){
+  toggleState(this,
+    ()=>{   
       tShrit.children[0].children[0].visible = true;
       camera.position.set(0,0,6.2);
       tShrit.position.y = -3
+    },
+    ()=>{
+      tShrit.children[0].children[0].visible = false;
+      camera.position.set(0,0,2.4);
+      tShrit.position.y = -3.5
     }
-  }
-}
-btnHuman.addEventListener('click',()=>{btnStateHuman.toggle()});
+  )
+})
 
 //Take a Shot
 const btnShot = document.querySelector("#shot");
@@ -92,13 +93,13 @@ btnShot.addEventListener('click',()=>{
 })
 
 //Dark Theme
-const toggleBtn = document.getElementById('theme-toggle');
+const darkModeBtn = document.getElementById('theme-toggle');
 const htmlEl = document.documentElement;
 
 const savedTheme = localStorage.getItem('theme') || 'dark';
 htmlEl.setAttribute('data-theme', savedTheme);
 
-toggleBtn.addEventListener('click', () => {
+darkModeBtn.addEventListener('click', () => {
     const currentTheme = htmlEl.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     
@@ -117,6 +118,16 @@ const zoomInBtn = document.getElementById("zoomInBTN");
 const zoomOutBtn = document.getElementById("zoomOutBTN");
 //lock
 const lockBtn = document.getElementById("lockBTN");
+lockBtn.addEventListener("click",function(){
+  toggleState(this,
+    ()=>{
+      controls.enabled = false;
+    },
+    ()=>{
+       controls.enabled = true;
+    }
+  )
+})
 //trash
 const trashBtn = document.getElementById("trashBTN");
 

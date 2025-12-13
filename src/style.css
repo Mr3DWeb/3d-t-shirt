@@ -300,6 +300,9 @@ div#footer{
    cursor: pointer;
    padding: 5px;
 }
+#tools-bar button:active{
+  color:red;
+}
 #tools-bar img{
   width: 32px;
   height: 32px;
@@ -329,39 +332,35 @@ div#footer{
   cursor: pointer;
   transition: all 0.4s ease;
   backdrop-filter: blur(10px);
+  gap: 5px;
 }
 .footer-btn svg{
   display: block;
-  width: 40px;
-  height: 40px;
-  fill: var(--text-primary);
-  margin-bottom: -6px;
+  width: 35px;
+  height: 35px;
+}
+.footer-btn svg path{
+    fill: var(--text-primary);
 }
 .footer-btn:hover{
   border-color: rgba(11, 123, 129, 0.507);
 }
 .footer-btn:nth-child(2) svg {
-    transform: scale(1.2);
-    transform-origin: center;
-}
-.footer-btn:nth-child(3) svg {
-    transform: scale(1.6);
+    transform: scale(1.15);
     transform-origin: center;
 }
 .footer-btn[data-active="true"]{
    box-shadow: 0 0 5px rgba(0, 173, 181, 0.4);
    background: rgba(0, 173, 181, 0.1);
 }
-.footer-btn[data-active="true"] svg {
+.footer-btn[data-active="true"] svg path{
   fill: var(--color-accent);
-  transform: scale(1.1);
 }
 #shot{
    box-shadow: 0 0 5px rgba(0, 173, 181, 0.4);
    background: rgba(0, 173, 181, 0.1);
 }
-#shot svg , #shot .shot-text{
+#shot svg path, #shot .shot-text{
   color: var(--color-accent);
    fill: var(--color-accent);
-  transform: scale(1.1);
 }
