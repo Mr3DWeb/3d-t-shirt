@@ -171,6 +171,8 @@ allHumanColorBtn.forEach(btn =>{
     //get color
     const colorValue = clickedBtn.getAttribute('data-color');
     currentHumanColor = colorValue;
+    //change human color
+    if(humanMat){humanMat.color.set(currentHumanColor);}
   })
 })
 
@@ -189,6 +191,8 @@ allTShirtColorBtn.forEach(btn =>{
     //get color
     const colorValue = clickedBtn.getAttribute('data-color');
     currentTShirtColor = colorValue;
+    //change t-shirt color
+    if(shirtMat){shirtMat.color.set(currentTShirtColor);}
   })
 })
 
@@ -210,6 +214,8 @@ customTShirtColorInput.addEventListener('input',(e)=>{
 
   allTShirtColorBtn.forEach(btn=>{btn.removeAttribute('data-avtive');});
   customTShirtColorLabal.setAttribute('data-active','true');
+  //change t-shirt color
+  if(shirtMat){shirtMat.color.set(currentTShirtColor);}
 })
 //-- Brush Setting
 //brush size 
@@ -272,7 +278,7 @@ scene.add(dirLight);
 //GltfLoader
 const gltfLoader = new GLTFLoader();
 
-let tShrit;
+let tShrit,shirtMat,humanMat;
 let mixer,action;
 gltfLoader.load("model/t-shirt.glb",(gltf)=>{
   tShrit = gltf.scene;
@@ -290,12 +296,13 @@ gltfLoader.load("model/t-shirt.glb",(gltf)=>{
   action = mixer.clipAction(clip);
 
   //Acsess To Material
-  const shirtMat = tShrit.children[0].children[1].material;
-  const humanMat = tShrit.children[0].children[0].material;
+  shirtMat = tShrit.children[0].children[1].material;
+  humanMat = tShrit.children[0].children[0].material;
   tShrit.children[0].children[0].visible = false;
 
-  //shirtMat.color.setHex(0xFF0000);
-  //humanMat.color.setHex(0x00ADB5);
+  //color system
+  shirtMat.color.set(currentTShirtColor );
+  humanMat.color.set(currentHumanColor );
   
   //Add to scene % log
   scene.add(tShrit);
