@@ -499,7 +499,43 @@ div#footer{
 #connect-warpper div a{
   color: var(--color-primary);
   text-decoration: none;
+  transition: all 0.3s ease;
+}
+#connect-warpper div a:hover{
+  color: var(--color-accent);
+  letter-spacing: 1px;
 }
 .sc-web{
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
+
+/* Tolip */
+[data-tooltip] {
+    position: relative;
+}
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--text-primary);
+    color: var(--color-primary);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* افکت فنری */
+}
+
+[data-tooltip]:hover::before{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+

@@ -49,6 +49,7 @@ function getResponsiveData(){
   const isMobile = width <= 450;
   return{
     modelScale : isMobile ? 1.5 : 3,
+    textureSize : isMobile ? 512 : 1024,
   }
 }
 const responsive = getResponsiveData();
@@ -176,17 +177,28 @@ const undoBtn = document.getElementById("undoBTN");
 const redoBtn = document.getElementById("redoBTN");
 //zoom in
 const zoomInBtn = document.getElementById("zoomInBTN");
+zoomInBtn.addEventListener('click',()=>{
+  camera.position.z -= 0.5;
+})
 //zoom out
 const zoomOutBtn = document.getElementById("zoomOutBTN");
+zoomOutBtn.addEventListener('click',()=>{
+  camera.position.z += 0.5;
+})
 //lock
 const lockBtn = document.getElementById("lockBTN");
+let isScreenLocked = false;
 lockBtn.addEventListener("click",function(){
   toggleState(this,
     ()=>{
       controls.enabled = false;
+      isScreenLocked = true;
+      document.body.style.cursor = 'not-allowed';
     },
     ()=>{
        controls.enabled = true;
+       isScreenLocked = false;
+       document.body.style.cursor = 'default';
     }
   )
 })
@@ -364,7 +376,7 @@ gltfLoader.load("model/t-shirt.glb",(gltf)=>{
   humanMat.color.set(currentHumanColor);
 
   //---- For Paint System ---
-  const textureSize = 1024; 
+  const textureSize = responsive.textureSize; 
   const diffuseSystem = createTextureCanvas(textureSize, textureSize,currentTShirtColor);
   const normalSystem = createTextureCanvas(textureSize, textureSize,'#8080ff'); 
 
@@ -427,6 +439,7 @@ const mouse = new THREE.Vector2();
 function paintOnShirt(event) {
     if (!shirtMesh) return;
     if (isPopupOpen) return;
+    if(isScreenLocked) return;
 
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
