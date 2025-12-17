@@ -60,8 +60,9 @@ function getResponsiveData(){
   const width = window.innerWidth;
   const isMobile = width <= 450;
   return{
-    modelScale : isMobile ? 1.5 : 3,
+    modelScale : isMobile ? 2 : 3,
     textureSize : isMobile ? 512 : 1024,
+    yPosition : isMobile ? -2.5 : -3.5
   }
 }
 const responsive = getResponsiveData();
@@ -490,7 +491,7 @@ gltfLoader.load("model/t-shirt.glb",(gltf)=>{
   tShrit.scale.set(tShritScale,tShritScale,tShritScale);
 
   //Center 
-  tShrit.position.y = -3.5
+  tShrit.position.y = responsive.yPosition
 
   //animation
    mixer = new THREE.AnimationMixer(tShrit);
