@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+     <!-- Loader -->
+      <div id="loding-screen">
+        <div class="loader-content">
+          <div class="spinner"></div>
+          <p id="loading-text"> Loding Model... </p>
+          <div class="progress-bar-container">
+            <div id="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+
     <!-- Main Content -->
     <canvas id="webgl"></canvas>
     <section>
@@ -146,7 +157,6 @@
         </button>
       </div>
     </section>
-
 
      <!-- Custom Confirmation Modal -->
       <div id="confrim-overlay">
