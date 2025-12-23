@@ -636,3 +636,9 @@ div#footer{
     fill: var(--color-accent);
   }
 }
+
+@media  (max-width : 450px ){
+  div#header h1{
+    font-size: 1.3rem;
+  }
+}
