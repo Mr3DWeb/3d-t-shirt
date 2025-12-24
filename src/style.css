@@ -698,7 +698,7 @@ div#footer{
   }
   .madeBy{
     left: auto;
-    bottom: 6%;
+    bottom: 5%;
   }
   .footer-btn svg {
     width: 30px;
@@ -724,7 +724,7 @@ div#footer{
   }
 
   #connect-warpper h3{
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   #connect-warpper div a {
   font-size: 0.8rem;
