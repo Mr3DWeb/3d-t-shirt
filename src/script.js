@@ -83,12 +83,12 @@ const modalCancelBtn = document.getElementById('cancel-btn');
 const trashBtn = document.getElementById("trashBTN");
 function openConfrimModal(){
   modalOverlay.classList.add('active')
-  isPopupOpen = true;
+  isOpen = true;
 }
 function closeModal (){
   modalOverlay.classList.remove('active');
   setTimeout(()=>{
-    isPopupOpen = false;
+    isOpen = false;
   },300)
   
 }
